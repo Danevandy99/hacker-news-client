@@ -1,0 +1,6 @@
+<div class="story">
+  <ng-container *ngIf="(story$ | async) as story">
+    {{ story.title }}
+    <a [href]="story.url">Link</a>
+  </ng-container>
+</div>
