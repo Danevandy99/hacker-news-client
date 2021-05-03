@@ -1,1 +1,9 @@
-<app-story [storyId]="storyId" *ngFor="let storyId of (storyIds$ | async)?.slice(0, 5)"></app-story>
+<div [ngClass]="{ 'dark': darkMode.darkMode }">
+  <div class="bg-white dark:bg-gray-900">
+    <div class="container max-w-4xl mx-auto flex">
+      <app-sidebar></app-sidebar>
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
+

@@ -1,7 +1,10 @@
+import { DarkModeService } from './../../shared/service/dark-mode.service';
+import { HttpClient } from '@angular/common/http';
 import { HackerNewsApiService } from './../../shared/service/hacker-news-api.service';
 import { Observable } from 'rxjs';
 import { Component, Input, OnInit } from '@angular/core';
 import { Story } from 'src/app/shared/models/story';
+import { map, publishReplay, refCount, share, shareReplay, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-story',
@@ -10,14 +13,24 @@ import { Story } from 'src/app/shared/models/story';
 })
 export class StoryComponent implements OnInit {
   @Input() storyId: number;
-  story$: Observable<Story>
+  story: Story;
+  blankImage = "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==";
 
   constructor(
-    private hackerNewsAPI: HackerNewsApiService
+    private hackerNewsAPI: HackerNewsApiService,
+    private http: HttpClient,
+    public darkMode: DarkModeService
   ) { }
 
   ngOnInit(): void {
-    this.story$ = this.hackerNewsAPI.getStory(this.storyId);
+    this.hackerNewsAPI.getStory(this.storyId)
+      .subscribe(async story => {
+        this.story = story;
+        //this.story.image = await this.getURLImage(story.url);
+      });
   }
 
+  async getURLImage(url: string): Promise<string> {
+    return await this.http.get<string>("http://localhost:3000/?url=" + url).toPromise();
+  }
 }

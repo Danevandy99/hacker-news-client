@@ -7,5 +7,6 @@ export interface Story {
   time: number,
   title: string,
   type: string,
-  url: string
+  url: string,
+  image?: string,
 }

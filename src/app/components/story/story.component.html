@@ -1,6 +1,14 @@
-<div class="story">
-  <ng-container *ngIf="(story$ | async) as story">
-    {{ story.title }}
-    <a [href]="story.url">Link</a>
-  </ng-container>
+<div class="relative story p-2 mx-auto">
+  <a [href]="story.url" target="_blank" class="block hover:bg-gray-100 dark:hover:bg-gray-800 transition rounded-lg overflow-hidden p-2" *ngIf="story">
+    <div class="aspect-w-16 aspect-h-9 rounded-md overflow-hidden">
+      <img class="w-full h-full object-cover" [ngClass]="{ 'shimmer': !story.image && !darkMode.darkMode, 'dark-shimmer': !story.image && darkMode.darkMode }" [src]="story.image || blankImage"/>
+    </div>
+    <div class="p-2">
+      <p class="m-0 font-bold text-xl dark:text-white">{{ story.title }}</p>
+    </div>
+    <div class="flex px-2 w-full mb-1 justify-center items-center">
+      <p class="text-gray-500 text-sm flex items-center">{{ story.by }} - {{ (story.time * 1000) | timeago }}</p>
+      <p class="ml-auto text-gray-600 text-sm rounded-full bg-gray-200 px-3 py-1 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-white">{{ story.descendants }} Comments</p>
+    </div>
+  </a>
 </div>

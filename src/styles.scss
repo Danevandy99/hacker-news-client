@@ -2,3 +2,24 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 /* You can add global styles to this file, and also import other style files */
+
+.shimmer {
+  animation : shimmer 2s infinite;
+  background: linear-gradient(to right, #eff1f3 4%, #e2e2e2 25%, #eff1f3 36%);
+  background-size: 1000px 100%;
+}
+
+.dark-shimmer {
+  animation: shimmer 2s infinite;
+  background: linear-gradient(to right, rgba(31, 41, 55, var(--tw-bg-opacity)) 4%, rgba(55, 65, 81, var(--tw-bg-opacity)) 25%, rgba(31, 41, 55, var(--tw-bg-opacity)) 36%);
+  background-size: 1000px 100%;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
