@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { delay } from 'rxjs/operators';
 import { Story } from '../models/story';
 
 @Injectable({
@@ -15,7 +16,7 @@ export class HackerNewsApiService {
   ) { }
 
   getTopStoriesIds(page: number, pageSize: number): Observable<number[]> {
-    return this.http.get<number[]>(this.baseUrl + "topstories.json");
+    return this.http.get<number[]>(this.baseUrl + "topstories.json").pipe(delay(2000));
   }
 
   getStory(storyId: number): Observable<Story> {
