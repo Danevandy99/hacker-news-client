@@ -16,7 +16,7 @@ export class HackerNewsApiService {
   ) { }
 
   getTopStoriesIds(page: number, pageSize: number): Observable<number[]> {
-    return this.http.get<number[]>(this.baseUrl + "topstories.json").pipe(delay(2000));
+    return this.http.get<number[]>(this.baseUrl + "topstories.json");
   }
 
   getStory(storyId: number): Observable<Story> {

@@ -23,14 +23,16 @@ export class StoryComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.hackerNewsAPI.getStory(this.storyId)
-      .subscribe(async story => {
-        this.story = story;
-        //this.story.image = await this.getURLImage(story.url);
-      });
+    if (this.storyId) {
+      this.hackerNewsAPI.getStory(this.storyId)
+        .subscribe(async story => {
+          this.story = story;
+          this.story.image = await this.getURLImage(this.story.url, this.story.title);
+        });
+    }
   }
 
-  async getURLImage(url: string): Promise<string> {
-    return await this.http.get<string>("http://localhost:3000/?url=" + url).toPromise();
+  async getURLImage(url: string, title: string): Promise<string> {
+    return await this.http.get<string>("http://localhost:3000/?url=" + url + "&title=" + title).toPromise();
   }
 }
