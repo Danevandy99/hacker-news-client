@@ -39,8 +39,9 @@ app.use(cors())
 app.get("/get-image", cache(60 * 5), async (req, res) => {
   try {
     let url = req.query.url;
-    let title = req.query.title;
-    if (!url || !title) {
+    let title = req.query.title || 'tech';
+
+    if (!url) {
       res.status(403).send("Must include url and title query parameters");
       return;
     }
@@ -75,5 +76,5 @@ app.get('/*', (req, res) => {
 
 // start the server listening for requests
 app.listen(process.env.PORT || 3000, () => {
-  console.log("Server is running...")
+  console.log("Server is running on port " + (process.env.PORT || 3000) + "...")
 });

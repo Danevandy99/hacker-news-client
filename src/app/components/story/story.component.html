@@ -1,9 +1,9 @@
-<div class="relative story p-2 mx-auto">
-  <a [href]="story?.url" target="_blank" class="block hover:bg-gray-100 dark:hover:bg-gray-800 transition rounded-lg overflow-hidden p-2">
-    <div class="aspect-w-16 aspect-h-9 rounded-md overflow-hidden">
+<div class="relative story p-2 mx-auto w-full">
+  <a [href]="story?.url" target="_blank" class="block hover:bg-gray-100 dark:hover:bg-gray-800 transition rounded-lg overflow-hidden p-2 w-full">
+    <div class="aspect-w-16 aspect-h-9 rounded-md overflow-hidden w-full">
       <img class="w-full h-full object-cover" loading="lazy" [ngClass]="{ 'shimmer': !story?.image && !darkMode.darkMode, 'dark-shimmer': !story?.image && darkMode.darkMode }" [src]="story?.image || blankImage"/>
     </div>
-    <div class="p-2">
+    <div class="p-2 w-full">
       <p
       [ngClass]="{ 'shimmer': (!darkMode.darkMode && !story), 'dark-shimmer': (darkMode.darkMode && !story), 'w-full rounded-full my-1': !story }"
         class="m-0 font-bold text-xl dark:text-white">{{ story?.title }}&nbsp;</p>

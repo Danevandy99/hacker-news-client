@@ -14,6 +14,7 @@ import { BestStoriesComponent } from './best-stories/best-stories.component';
 import { AskStoriesComponent } from './ask-stories/ask-stories.component';
 import { ShowStoriesComponent } from './show-stories/show-stories.component';
 import { JobStoriesComponent } from './job-stories/job-stories.component';
+import { StoryListComponent } from './components/story-list/story-list.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { JobStoriesComponent } from './job-stories/job-stories.component';
     BestStoriesComponent,
     AskStoriesComponent,
     ShowStoriesComponent,
-    JobStoriesComponent
+    JobStoriesComponent,
+    StoryListComponent
   ],
   imports: [
     BrowserModule,

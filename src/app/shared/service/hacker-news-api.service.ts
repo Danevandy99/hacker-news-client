@@ -15,8 +15,28 @@ export class HackerNewsApiService {
     private http: HttpClient
   ) { }
 
-  getTopStoriesIds(page: number, pageSize: number): Observable<number[]> {
+  getTopStoriesIds(): Observable<number[]> {
     return this.http.get<number[]>(this.baseUrl + "topstories.json");
+  }
+
+  getNewStoriesIds(): Observable<number[]> {
+    return this.http.get<number[]>(this.baseUrl + "newstories.json");
+  }
+
+  getBestStoriesIds(): Observable<number[]> {
+    return this.http.get<number[]>(this.baseUrl + "beststories.json");
+  }
+
+  getAskStoriesIds(): Observable<number[]> {
+    return this.http.get<number[]>(this.baseUrl + "askstories.json");
+  }
+
+  getShowStoriesIds(): Observable<number[]> {
+    return this.http.get<number[]>(this.baseUrl + "showstories.json");
+  }
+
+  getJobStoriesIds(): Observable<number[]> {
+    return this.http.get<number[]>(this.baseUrl + "jobstories.json");
   }
 
   getStory(storyId: number): Observable<Story> {

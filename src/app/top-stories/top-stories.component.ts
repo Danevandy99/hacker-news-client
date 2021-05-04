@@ -8,15 +8,14 @@ import { HackerNewsApiService } from '../shared/service/hacker-news-api.service'
   styleUrls: ['./top-stories.component.scss'],
   host: {
     class:'flex-1'
-}
+  }
 })
 export class TopStoriesComponent implements OnInit {
-  storyIds$: Observable<number[]>;
+  storyIds$ = this.hackerNewsAPI.getTopStoriesIds();
 
   constructor(
     private hackerNewsAPI: HackerNewsApiService
   ) {
-    this.storyIds$ = this.hackerNewsAPI.getTopStoriesIds(0, 25);
   }
 
   ngOnInit(): void {

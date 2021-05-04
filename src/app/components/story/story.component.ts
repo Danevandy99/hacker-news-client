@@ -1,3 +1,4 @@
+import { environment } from './../../../environments/environment';
 import { DarkModeService } from './../../shared/service/dark-mode.service';
 import { HttpClient } from '@angular/common/http';
 import { HackerNewsApiService } from './../../shared/service/hacker-news-api.service';
@@ -27,12 +28,17 @@ export class StoryComponent implements OnInit {
       this.hackerNewsAPI.getStory(this.storyId)
         .subscribe(async story => {
           this.story = story;
-          this.story.image = await this.getURLImage(this.story.url, this.story.title);
+          if (this.story.url && this.story.title) {
+            this.story.image = await this.getURLImage(this.story.url, this.story.title);
+          } else {
+            this.story.image = "https://jayclouse.com/wp-content/uploads/2019/06/hacker_news-1000x525-1.jpg";
+          }
         });
     }
   }
 
   async getURLImage(url: string, title: string): Promise<string> {
-    return await this.http.get<string>("http://localhost:3000/get-image?url=" + url + "&title=" + title).toPromise();
+    const baseUrl = environment.production ? "/" : "http://localhost/";
+    return await this.http.get<string>(baseUrl + "get-image?url=" + url + "&title=" + title).toPromise();
   }
 }
