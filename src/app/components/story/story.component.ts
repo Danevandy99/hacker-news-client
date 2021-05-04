@@ -33,6 +33,6 @@ export class StoryComponent implements OnInit {
   }
 
   async getURLImage(url: string, title: string): Promise<string> {
-    return await this.http.get<string>("http://localhost:3000/?url=" + url + "&title=" + title).toPromise();
+    return await this.http.get<string>("http://localhost:3000/get-image?url=" + url + "&title=" + title).toPromise();
   }
 }
