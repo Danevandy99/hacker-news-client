@@ -1,7 +1,12 @@
 <div class="relative story p-2 mx-auto w-full">
   <a [href]="story?.url" target="_blank" class="block hover:bg-gray-100 dark:hover:bg-gray-800 transition rounded-lg overflow-hidden p-2 w-full">
     <div class="aspect-w-16 aspect-h-9 rounded-md overflow-hidden w-full">
-      <img class="w-full h-full object-cover" loading="lazy" [ngClass]="{ 'shimmer': !story?.image && !darkMode.darkMode, 'dark-shimmer': !story?.image && darkMode.darkMode }" [src]="story?.image || blankImage"/>
+      <img
+        class="w-full h-full object-cover"
+        onerror="this.onerror=null;this.src='https://jayclouse.com/wp-content/uploads/2019/06/hacker_news-1000x525-1.jpg';"
+        loading="lazy"
+        [ngClass]="{ 'shimmer': !story?.image && !darkMode.darkMode, 'dark-shimmer': !story?.image && darkMode.darkMode }"
+        [src]="story?.image || blankImage"/>
     </div>
     <div class="p-2 w-full">
       <p

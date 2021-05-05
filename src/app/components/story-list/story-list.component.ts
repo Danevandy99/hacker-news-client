@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HackerNewsApiService } from 'src/app/shared/service/hacker-news-api.service';
 
