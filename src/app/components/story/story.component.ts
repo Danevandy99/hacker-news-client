@@ -28,7 +28,7 @@ export class StoryComponent implements OnInit {
       this.hackerNewsAPI.getStory(this.storyId)
         .subscribe(async story => {
           this.story = story;
-          if (this.story.url && this.story.title) {
+          if (this.story && this.story.url && this.story.title) {
             this.story.image = await this.getURLImage(this.story.url, this.story.title);
           } else {
             this.story.image = "https://jayclouse.com/wp-content/uploads/2019/06/hacker_news-1000x525-1.jpg";

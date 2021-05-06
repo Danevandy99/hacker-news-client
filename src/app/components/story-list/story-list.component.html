@@ -1,4 +1,4 @@
-<div class="w-full my-1 flex-grow">
+<div class="lg:w-full lg:pb-0 pb-20 w-screen my-1 flex-grow">
   <ng-container *ngIf="storyIds$ | async as storyIds; else blankStories">
     <app-story [storyId]="storyId" *ngFor="let storyId of storyIds.slice(0, 10)"></app-story>
   </ng-container>
