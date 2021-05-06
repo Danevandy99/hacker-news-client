@@ -7,8 +7,10 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "postinstall": "ng build --prod"
   },
+  "main": "app.js",
   "private": true,
   "dependencies": {
     "@angular/animations": "~11.2.12",
@@ -20,6 +22,8 @@
     "@angular/platform-browser-dynamic": "~11.2.12",
     "@angular/router": "~11.2.12",
     "@ngneat/tailwind": "^7.0.3",
+    "@angular/cli": "~11.2.11",
+    "@angular/compiler-cli": "~11.2.12",
     "@tailwindcss/aspect-ratio": "^0.2.0",
     "@tailwindcss/postcss7-compat": "^2.1.2",
     "got": "^11.8.2",
@@ -34,10 +38,12 @@
     "tslib": "^2.0.0",
     "zone.js": "~0.11.3"
   },
+  "engines": {
+    "node": "^14.15.1",
+    "npm": "^6.14.8"
+  },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.1102.11",
-    "@angular/cli": "~11.2.11",
-    "@angular/compiler-cli": "~11.2.12",
     "@tailwindcss/forms": "0.3.2",
     "@tailwindcss/typography": "0.4.0",
     "@types/jasmine": "~3.6.0",
