@@ -8,15 +8,19 @@
         [ngClass]="{ 'shimmer': !story?.image && !darkMode.darkMode, 'dark-shimmer': !story?.image && darkMode.darkMode }"
         [src]="story?.image || blankImage"/>
     </div>
-    <div class="p-2 w-full">
+    <div
+      [ngClass]="{ 'px-0': !story }"
+      class="p-2 w-full">
       <p
       [ngClass]="{ 'shimmer': (!darkMode.darkMode && !story), 'dark-shimmer': (darkMode.darkMode && !story), 'w-full rounded-full my-1': !story }"
         class="m-0 font-bold text-xl dark:text-white">{{ story?.title }}&nbsp;</p>
     </div>
-    <div class="flex px-2 w-full mb-1 justify-center items-center">
+    <div
+      [ngClass]="!story ? 'px-0' : 'px-2'"
+      class="flex w-full mb-1 justify-center items-center">
       <p
-        [ngClass]="{ 'shimmer': (!darkMode.darkMode && !story), 'dark-shimmer': (darkMode.darkMode && !story), 'w-64 rounded-full': !story }"
-        class="text-gray-500 text-sm flex items-center">{{ story?.by }}&nbsp;<span *ngIf="story?.time">- {{ (story?.time * 1000) | timeago }}</span></p>
+        [ngClass]="{ 'shimmer': (!darkMode.darkMode && !story), 'dark-shimmer': (darkMode.darkMode && !story), 'w-64 rounded-full px-3 py-1': !story }"
+        class="text-gray-500 text-sm flex items-center mr-2">{{ story?.by }}&nbsp;<span *ngIf="story?.time">- {{ (story?.time * 1000) | timeago }}</span></p>
       <p
         [ngClass]="{ 'shimmer': (!darkMode.darkMode && !story), 'dark-shimmer': (darkMode.darkMode && !story), 'w-32': !story }"
         class="ml-auto text-gray-600 text-sm rounded-full bg-gray-200 px-3 py-1 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-white"><span *ngIf="story">{{ story?.descendants || 0 }}</span>&nbsp;<span *ngIf="story">Comments</span></p>
