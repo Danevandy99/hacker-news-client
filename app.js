@@ -3,7 +3,10 @@ const express = require("express");
 const cors = require('cors');
 var mcache = require('memory-cache');
 const metascraper = require('metascraper')([
+  require('metascraper-logo-favicon')(),
   require('metascraper-image')(),
+  require('metascraper-publisher')(),
+  require('metascraper-logo')(),
 ]);
 const got = require('got');
 
@@ -36,7 +39,7 @@ const app = express();
 app.use(cors())
 
 // define the first route
-app.get("/get-image", cache(60 * 5), async (req, res) => {
+app.get("/get-metadata", cache(60 * 5), async (req, res) => {
   try {
     let url = req.query.url;
     let title = req.query.title || 'tech';
@@ -50,21 +53,31 @@ app.get("/get-image", cache(60 * 5), async (req, res) => {
     const metadata = await metascraper({ html, url })
     console.log(metadata);
     if (metadata.image) {
-      res.json(metadata.image);
+      res.json(metadata);
       return;
     }
 
     let { body: json, _2 } = await got("https://api.unsplash.com/search/photos?query=tech " + title + "&client_id=3OvKMi4PToRpzbMaoQwQGSD6wH7ornSlpNtaTrkcumE");
     json = JSON.parse(json);
     if (json.results[0].urls.small) {
-      res.json(json.results[0].urls.small);
+      res.json({
+        ...metadata,
+        image: json.results[0].urls.small
+      });
       return;
     }
 
-    res.json("https://jayclouse.com/wp-content/uploads/2019/06/hacker_news-1000x525-1.jpg");
+    res.json({
+      ...metadata,
+      image: "https://jayclouse.com/wp-content/uploads/2019/06/hacker_news-1000x525-1.jpg"
+    });
   } catch (error) {
     console.log(error);
-    res.json("https://jayclouse.com/wp-content/uploads/2019/06/hacker_news-1000x525-1.jpg");
+    res.json({
+      image: "https://jayclouse.com/wp-content/uploads/2019/06/hacker_news-1000x525-1.jpg",
+      publisher: "",
+      icon: ""
+    });
   }
 })
 

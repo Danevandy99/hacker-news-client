@@ -9,4 +9,7 @@ export interface Story {
   type: string,
   url: string,
   image?: string,
+  logo?: string,
+  publisher?: string,
+  hostname?: string,
 }

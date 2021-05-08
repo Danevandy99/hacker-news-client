@@ -1,5 +1,21 @@
 <div class="relative story p-2 mx-auto w-full">
-  <a [href]="story?.url" target="_blank" class="block hover:bg-gray-100 dark:hover:bg-gray-800 transition rounded-lg overflow-hidden p-2 w-full">
+  <a [href]="story?.url" target="_blank" class="block bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden p-2 w-full">
+    <div class="flex flex-row pb-2 items-center">
+      <img
+          class="object-contain w-8 h-8 rounded-md mr-3"
+          [ngClass]="{
+            'shimmer': !story?.logo && !darkMode.darkMode,
+            'dark-shimmer': !story?.logo && darkMode.darkMode
+          }"
+          [src]="story?.logo || blankImage"/>
+      <p class="dark:text-white font-bold">{{ story?.hostname }}</p>
+      <p *ngIf="story?.score" class="px-3 py-1 rounded-full bg-hnorange ml-auto font-bold text-opacity-50 text-gray-800 text-sm flex items-center">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 15l7-7 7 7" />
+        </svg>
+        {{ story?.score }}
+      </p>
+    </div>
     <div class="aspect-w-16 aspect-h-9 rounded-md overflow-hidden w-full">
       <img
         class="w-full h-full object-cover"

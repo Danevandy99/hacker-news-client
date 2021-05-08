@@ -29,7 +29,12 @@ export class StoryComponent implements OnInit {
         .subscribe(async story => {
           this.story = story;
           if (this.story && this.story.url && this.story.title) {
-            this.story.image = await this.getURLImage(this.story.url, this.story.title);
+            const metadata = await this.getURLMetadata(this.story.url, this.story.title);
+            this.story = {
+              ...this.story,
+              ...metadata,
+              hostname: new URL(this.story.url).hostname
+            };
           } else {
             this.story.image = "https://jayclouse.com/wp-content/uploads/2019/06/hacker_news-1000x525-1.jpg";
           }
@@ -37,8 +42,8 @@ export class StoryComponent implements OnInit {
     }
   }
 
-  async getURLImage(url: string, title: string): Promise<string> {
+  async getURLMetadata(url: string, title: string): Promise<{ image: string, publisher: string, logo: string }> {
     const baseUrl = environment.production ? "/" : "http://localhost/";
-    return await this.http.get<string>(baseUrl + "get-image?url=" + url + "&title=" + title).toPromise();
+    return await this.http.get<{ image: string, publisher: string, logo: string }>(baseUrl + "get-metadata?url=" + url + "&title=" + title).toPromise();
   }
 }
