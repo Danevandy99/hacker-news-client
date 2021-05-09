@@ -11,7 +11,7 @@ import { HackerNewsApiService } from '../shared/service/hacker-news-api.service'
 })
 export class JobStoriesComponent implements OnInit {
 
-  storyIds$ = this.hackerNewsAPI.getTopStoriesIds();
+  storyIds$ = this.hackerNewsAPI.getJobStoriesIds();
 
   constructor(
     private hackerNewsAPI: HackerNewsApiService

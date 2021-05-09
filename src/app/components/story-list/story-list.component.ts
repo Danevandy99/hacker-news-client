@@ -9,12 +9,17 @@ import { HackerNewsApiService } from 'src/app/shared/service/hacker-news-api.ser
 })
 export class StoryListComponent implements OnInit {
 
-  @Input() storyIds$: Observable<number[]>;
+  @Input() storyIds: number[];
+  sliceSize = 10;
 
   constructor(
   ) { }
 
   ngOnInit(): void {
+  }
+
+  onScroll() {
+    if (this.sliceSize < this.storyIds.length) this.sliceSize += 10;
   }
 
 }

@@ -7,6 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { StoryComponent } from './components/story/story.component';
 import { SafePipe } from './shared/pipes/safe.pipe';
 import { TimeagoModule } from 'ngx-timeago';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { TopStoriesComponent } from './top-stories/top-stories.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { NewStoriesComponent } from './new-stories/new-stories.component';
@@ -35,7 +36,8 @@ import { StoryListComponent } from './components/story-list/story-list.component
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    TimeagoModule.forRoot()
+    TimeagoModule.forRoot(),
+    InfiniteScrollModule
   ],
   providers: [],
   bootstrap: [AppComponent]

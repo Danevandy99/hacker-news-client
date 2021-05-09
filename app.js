@@ -6,7 +6,7 @@ const metascraper = require('metascraper')([
   require('metascraper-logo-favicon')(),
   require('metascraper-image')(),
   require('metascraper-publisher')(),
-  require('metascraper-logo')(),
+  //require('metascraper-logo')(),
 ]);
 const got = require('got');
 

@@ -1,6 +1,11 @@
 <div class="lg:w-full lg:pb-0 pb-20 w-screen my-1 flex-grow">
-  <ng-container *ngIf="storyIds$ | async as storyIds; else blankStories">
-    <app-story [storyId]="storyId" *ngFor="let storyId of storyIds.slice(0, 10)"></app-story>
+  <ng-container *ngIf="storyIds; else blankStories">
+    <div class="w-full h-full" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50"
+      (scrolled)="onScroll()">
+      <app-story [storyId]="storyId" *ngFor="let storyId of storyIds | slice:0:sliceSize">
+      </app-story>
+      <h3 class="text-center py-20 text-gray-500 font-bold">You've reached the end of the stories.</h3>
+    </div>
   </ng-container>
   <ng-template #blankStories>
     <app-story></app-story>

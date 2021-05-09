@@ -7,9 +7,10 @@
             'shimmer': !story?.logo && !darkMode.darkMode,
             'dark-shimmer': !story?.logo && darkMode.darkMode
           }"
+          onerror="this.onerror=null;this.src='https://jayclouse.com/wp-content/uploads/2019/06/hacker_news-1000x525-1.jpg';"
           [src]="story?.logo || blankImage"/>
-      <p class="dark:text-white font-bold">{{ story?.hostname }}</p>
-      <p *ngIf="story?.score" class="px-3 py-1 rounded-full bg-hnorange ml-auto font-bold text-opacity-50 text-gray-800 text-sm flex items-center">
+      <p class="dark:text-white font-bold flex-grow mr-2 whitespace-nowrap min-w-0 overflow-hidden overflow-ellipsis">{{ story?.hostname }}</p>
+      <p *ngIf="story?.score" class="flex-none px-3 py-1 rounded-full bg-hnorange font-bold dark:text-opacity-50 dark:text-gray-800 text-gray-100 text-sm flex items-center">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 15l7-7 7 7" />
         </svg>
@@ -32,7 +33,7 @@
         class="m-0 font-bold text-xl dark:text-white">{{ story?.title }}&nbsp;</p>
     </div>
     <div
-      [ngClass]="!story ? 'px-0' : 'px-2'"
+      [ngClass]="!story ? 'pl-0' : 'pl-2'"
       class="flex w-full mb-1 justify-center items-center">
       <p
         [ngClass]="{ 'shimmer': (!darkMode.darkMode && !story), 'dark-shimmer': (darkMode.darkMode && !story), 'w-64 rounded-full px-3 py-1': !story }"
