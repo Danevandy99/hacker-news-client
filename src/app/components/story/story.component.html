@@ -1,5 +1,5 @@
 <div class="relative story p-2 mx-auto w-full">
-  <a [href]="story?.url" target="_blank" class="block bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden p-2 w-full">
+  <div class="block bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden p-2 w-full">
     <div class="flex flex-row pb-2 items-center">
       <img
           class="object-contain w-8 h-8 rounded-md mr-3"
@@ -10,28 +10,30 @@
           onerror="this.onerror=null;this.src='https://jayclouse.com/wp-content/uploads/2019/06/hacker_news-1000x525-1.jpg';"
           [src]="story?.logo || blankImage"/>
       <p class="dark:text-white font-bold flex-grow mr-2 whitespace-nowrap min-w-0 overflow-hidden overflow-ellipsis">{{ story?.hostname }}</p>
-      <p *ngIf="story?.score" class="flex-none px-3 py-1 rounded-full bg-hnorange font-bold dark:text-opacity-50 dark:text-gray-800 text-gray-100 text-sm flex items-center">
+      <p *ngIf="story?.score" class="flex-none px-3 py-1 rounded-full bg-hnorange font-bold dark:text-opacity-75 dark:text-gray-800 text-gray-100 text-sm flex items-center">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 15l7-7 7 7" />
         </svg>
         {{ story?.score }}
       </p>
     </div>
-    <div class="aspect-w-16 aspect-h-9 rounded-md overflow-hidden w-full">
+    <a [href]="story?.url" target="_blank" class="aspect-w-16 aspect-h-9 rounded-md overflow-hidden w-full block">
       <img
         class="w-full h-full object-cover"
         onerror="this.onerror=null;this.src='https://jayclouse.com/wp-content/uploads/2019/06/hacker_news-1000x525-1.jpg';"
         loading="lazy"
         [ngClass]="{ 'shimmer': !story?.image && !darkMode.darkMode, 'dark-shimmer': !story?.image && darkMode.darkMode }"
         [src]="story?.image || blankImage"/>
-    </div>
-    <div
+    </a>
+    <a
+      [href]="story?.url"
+      target="_blank"
       [ngClass]="{ 'px-0': !story }"
-      class="p-2 w-full">
+      class="p-2 w-full block">
       <p
       [ngClass]="{ 'shimmer': (!darkMode.darkMode && !story), 'dark-shimmer': (darkMode.darkMode && !story), 'w-full rounded-full my-1': !story }"
         class="m-0 font-bold text-xl dark:text-white">{{ story?.title }}&nbsp;</p>
-    </div>
+    </a>
     <div
       [ngClass]="!story ? 'pl-0' : 'pl-2'"
       class="flex w-full mb-1 justify-center items-center">
@@ -39,8 +41,9 @@
         [ngClass]="{ 'shimmer': (!darkMode.darkMode && !story), 'dark-shimmer': (darkMode.darkMode && !story), 'w-64 rounded-full px-3 py-1': !story }"
         class="text-gray-500 text-sm flex items-center mr-2">{{ story?.by }}&nbsp;<span *ngIf="story?.time">- {{ (story?.time * 1000) | timeago }}</span></p>
       <p
+        [routerLink]="['/discussion', story?.id]"
         [ngClass]="{ 'shimmer': (!darkMode.darkMode && !story), 'dark-shimmer': (darkMode.darkMode && !story), 'w-32': !story }"
         class="ml-auto text-gray-600 text-sm rounded-full bg-gray-200 px-3 py-1 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-white"><span *ngIf="story">{{ story?.descendants || 0 }}</span>&nbsp;<span *ngIf="story">Comments</span></p>
     </div>
-  </a>
+  </div>
 </div>

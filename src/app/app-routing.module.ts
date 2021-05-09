@@ -1,3 +1,4 @@
+import { DiscussionComponent } from './discussion/discussion.component';
 import { JobStoriesComponent } from './job-stories/job-stories.component';
 import { ShowStoriesComponent } from './show-stories/show-stories.component';
 import { AskStoriesComponent } from './ask-stories/ask-stories.component';
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'ask-stories', component: AskStoriesComponent },
   { path: 'show-stories', component: ShowStoriesComponent },
   { path: 'job-stories', component: JobStoriesComponent },
+  { path: 'discussion/:id', component: DiscussionComponent },
 ];
 
 @NgModule({
