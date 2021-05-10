@@ -1,6 +1,8 @@
+import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Event, Router, RoutesRecognized, NavigationEnd } from '@angular/router';
 import {Location} from '@angular/common';
+import { filter, map, pairwise, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-discussion',
@@ -14,12 +16,23 @@ export class DiscussionComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     public location: Location
-  ) { }
+  ) {
+
+  }
+
+  get previousRoute$(): Observable<string> {
+    return this.router.events.pipe(
+      filter(e => e instanceof RoutesRecognized),
+      pairwise(),
+      map((e: [RoutesRecognized, RoutesRecognized]) => e[0].url),
+      tap(url => console.log(url))
+    );
+  }
 
   ngOnInit(): void {
     this.route.params.subscribe((params: { id: number }) => {
       this.discussionId = +params.id;
-    })
+    });
   }
 
 }

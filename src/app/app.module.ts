@@ -17,6 +17,8 @@ import { ShowStoriesComponent } from './show-stories/show-stories.component';
 import { JobStoriesComponent } from './job-stories/job-stories.component';
 import { StoryListComponent } from './components/story-list/story-list.component';
 import { DiscussionComponent } from './discussion/discussion.component';
+import { RouteReuseStrategy } from '@angular/router';
+import { CustomReuseStrategy } from './reuse-strategy';
 
 
 @NgModule({
@@ -41,7 +43,12 @@ import { DiscussionComponent } from './discussion/discussion.component';
     TimeagoModule.forRoot(),
     InfiniteScrollModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: RouteReuseStrategy,
+      useClass: CustomReuseStrategy
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
