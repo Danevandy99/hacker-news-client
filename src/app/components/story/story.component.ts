@@ -14,7 +14,7 @@ import { map, publishReplay, refCount, share, shareReplay, tap } from 'rxjs/oper
 })
 export class StoryComponent implements OnInit {
   @Input() storyId: number;
-  story: Story;
+  @Input() story: Story;
   blankImage = "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==";
 
   constructor(
@@ -24,7 +24,7 @@ export class StoryComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    if (this.storyId) {
+    if (this.storyId && !this.story) {
       this.hackerNewsAPI.getStory(this.storyId)
         .subscribe(async story => {
           this.story = story;

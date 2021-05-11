@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { delay } from 'rxjs/operators';
+import { Comment } from '../models/comment';
 import { Story } from '../models/story';
 
 @Injectable({
@@ -41,5 +42,9 @@ export class HackerNewsApiService {
 
   getStory(storyId: number): Observable<Story> {
     return this.http.get<Story>(this.baseUrl + "/item/" + storyId + ".json");
+  }
+
+  getComment(commentId: number): Observable<Comment> {
+    return this.http.get<Comment>(this.baseUrl + "/item/" + commentId + ".json");
   }
 }

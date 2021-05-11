@@ -42,6 +42,7 @@
         class="text-gray-500 text-sm flex items-center mr-2">{{ story?.by }}&nbsp;<span *ngIf="story?.time">- {{ (story?.time * 1000) | timeago }}</span></p>
       <a
         [routerLink]="['/discussion', story?.id]"
+        [queryParams]="{ story: (story | json) }"
         [ngClass]="{ 'shimmer': (!darkMode.darkMode && !story), 'dark-shimmer': (darkMode.darkMode && !story), 'w-32': !story }"
         class="ml-auto text-gray-600 text-sm rounded-full bg-gray-200 px-3 py-1 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-white"><span *ngIf="story">{{ story?.descendants || 0 }}</span>&nbsp;<span *ngIf="story">Comments</span></a>
     </div>

@@ -19,6 +19,7 @@ import { StoryListComponent } from './components/story-list/story-list.component
 import { DiscussionComponent } from './discussion/discussion.component';
 import { RouteReuseStrategy } from '@angular/router';
 import { CustomReuseStrategy } from './reuse-strategy';
+import { CommentComponent } from './components/comment/comment.component';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { CustomReuseStrategy } from './reuse-strategy';
     ShowStoriesComponent,
     JobStoriesComponent,
     StoryListComponent,
-    DiscussionComponent
+    DiscussionComponent,
+    CommentComponent
   ],
   imports: [
     BrowserModule,

@@ -8,7 +8,6 @@ import { filter } from 'rxjs/operators';
 export class RoutingHistoryService {
   private history = [];
 
-
   constructor(
     private router: Router
     ) {
