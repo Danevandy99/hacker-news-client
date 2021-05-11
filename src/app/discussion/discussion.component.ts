@@ -1,8 +1,8 @@
+import { RoutingHistoryService } from './../shared/service/routing-history.service';
 import { Observable } from 'rxjs';
-import { Component, OnInit } from '@angular/core';
+import { ApplicationRef, ChangeDetectionStrategy, ChangeDetectorRef, Component, NgZone, OnInit } from '@angular/core';
 import { ActivatedRoute, Event, Router, RoutesRecognized, NavigationEnd } from '@angular/router';
-import {Location} from '@angular/common';
-import { filter, map, pairwise, tap } from 'rxjs/operators';
+import { filter, first, map, pairwise, take, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-discussion',
@@ -11,28 +11,21 @@ import { filter, map, pairwise, tap } from 'rxjs/operators';
 })
 export class DiscussionComponent implements OnInit {
   discussionId: number;
+  previousPage: string;
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    public location: Location
+    private routeHistory: RoutingHistoryService
   ) {
-
-  }
-
-  get previousRoute$(): Observable<string> {
-    return this.router.events.pipe(
-      filter(e => e instanceof RoutesRecognized),
-      pairwise(),
-      map((e: [RoutesRecognized, RoutesRecognized]) => e[0].url),
-      tap(url => console.log(url))
-    );
   }
 
   ngOnInit(): void {
-    this.route.params.subscribe((params: { id: number }) => {
-      this.discussionId = +params.id;
-    });
+    this.previousPage = this.routeHistory.getPreviousUrl();
+  }
+
+  ngOnChanges() {
+
   }
 
 }
