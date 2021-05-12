@@ -21,7 +21,6 @@ import { DiscussionComponent } from './pages/discussion/discussion.component';
 import { RouteReuseStrategy } from '@angular/router';
 import { CustomReuseStrategy } from './reuse-strategy';
 import { CommentComponent } from './components/comment/comment.component';
-import { StoriesComponent } from './pages/stories/stories.component';
 
 
 @NgModule({
@@ -40,7 +39,6 @@ import { StoriesComponent } from './pages/stories/stories.component';
     DiscussionComponent,
     CommentComponent,
     AppRouterOutletDirective,
-    StoriesComponent,
   ],
   imports: [
     BrowserModule,
