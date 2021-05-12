@@ -11,6 +11,8 @@ import { Comment } from 'src/app/shared/models/comment';
 export class CommentComponent implements OnInit {
   @Input() commentId: number;
   @Input() comment: Comment;
+  @Input() level: number;
+  showReplies = false;
 
   constructor(
     private hnAPI: HackerNewsApiService,
