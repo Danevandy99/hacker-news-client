@@ -25,12 +25,13 @@ export class CustomReuseStrategy implements RouteReuseStrategy {
 
 
   private acceptedRoutes: string[] = [
-    "top-stories",
+    //"top-stories",
     "new-stories",
     "best-stories",
     "ask-stories",
     "show-stories",
-    "job-stories"
+    "job-stories",
+    "stories/:category"
   ];
 
   /**
@@ -47,7 +48,7 @@ export class CustomReuseStrategy implements RouteReuseStrategy {
       console.log("detaching", route);
       return true;
     } else {
-      return false; // will be "view/:resultId" when user navigates to result
+      return false;
     }
   }
 

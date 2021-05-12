@@ -10,7 +10,7 @@ import { HackerNewsApiService } from 'src/app/shared/service/hacker-news-api.ser
 export class StoryListComponent implements OnInit, OnChanges {
 
   @Input() storyIds: number[];
-  @Input() detached: boolean;
+  @Input() detached: boolean = true;
   sliceSize = 10;
 
   constructor(
