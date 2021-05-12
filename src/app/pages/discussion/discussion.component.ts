@@ -1,9 +1,9 @@
-import { RoutingHistoryService } from './../shared/service/routing-history.service';
+import { RoutingHistoryService } from '../../shared/service/routing-history.service';
 import { Observable } from 'rxjs';
 import { ApplicationRef, ChangeDetectionStrategy, ChangeDetectorRef, Component, NgZone, OnInit } from '@angular/core';
 import { ActivatedRoute, Event, Router, RoutesRecognized, NavigationEnd } from '@angular/router';
 import { filter, first, map, pairwise, take, tap } from 'rxjs/operators';
-import { Story } from '../shared/models/story';
+import { Story } from '../../shared/models/story';
 
 @Component({
   selector: 'app-discussion',

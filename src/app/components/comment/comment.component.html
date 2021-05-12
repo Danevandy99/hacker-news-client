@@ -1,10 +1,10 @@
-<div class="w-full bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden p-2 m-2">
+<div class="w-full bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden px-4 py-3 my-2">
   <p
     [ngClass]="{ 'shimmer': (!darkMode.darkMode && !comment), 'dark-shimmer': (darkMode.darkMode && !comment), 'w-64 rounded-full px-3 py-1': !comment }"
     class="text-gray-500 text-sm flex items-center mr-2">{{ comment?.by }}&nbsp;<span *ngIf="comment?.time">- {{ (comment ?.time * 1000) | timeago }}</span></p>
   <p
     [ngClass]="{ 'shimmer': (!darkMode.darkMode && !comment), 'dark-shimmer': (darkMode.darkMode && !comment), 'w-64 rounded-full px-3 py-1': !comment }"
     [innerHTML]="comment?.text"
-    class="dark:text-white text-sm flex flex-col mx-2">
+    class="dark:text-white text-sm flex flex-col mt-1 ml-1 mr-2">
   </p>
 </div>

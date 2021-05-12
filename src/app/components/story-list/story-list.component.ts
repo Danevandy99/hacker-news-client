@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, OnInit, SimpleChanges, OnChanges } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HackerNewsApiService } from 'src/app/shared/service/hacker-news-api.service';
 
@@ -7,15 +7,22 @@ import { HackerNewsApiService } from 'src/app/shared/service/hacker-news-api.ser
   templateUrl: './story-list.component.html',
   styleUrls: ['./story-list.component.scss']
 })
-export class StoryListComponent implements OnInit {
+export class StoryListComponent implements OnInit, OnChanges {
 
   @Input() storyIds: number[];
+  @Input() detached: boolean;
   sliceSize = 10;
 
   constructor(
   ) { }
 
   ngOnInit(): void {
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.storyIds) {
+      this.sliceSize = 10;
+    }
   }
 
   onScroll() {

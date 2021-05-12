@@ -1,10 +1,10 @@
-import { DiscussionComponent } from './discussion/discussion.component';
-import { JobStoriesComponent } from './job-stories/job-stories.component';
-import { ShowStoriesComponent } from './show-stories/show-stories.component';
-import { AskStoriesComponent } from './ask-stories/ask-stories.component';
-import { BestStoriesComponent } from './best-stories/best-stories.component';
-import { NewStoriesComponent } from './new-stories/new-stories.component';
-import { TopStoriesComponent } from './top-stories/top-stories.component';
+import { DiscussionComponent } from './pages/discussion/discussion.component';
+import { JobStoriesComponent } from './pages/job-stories/job-stories.component';
+import { ShowStoriesComponent } from './pages/show-stories/show-stories.component';
+import { AskStoriesComponent } from './pages/ask-stories/ask-stories.component';
+import { BestStoriesComponent } from './pages/best-stories/best-stories.component';
+import { NewStoriesComponent } from './pages/new-stories/new-stories.component';
+import { TopStoriesComponent } from './pages/top-stories/top-stories.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 

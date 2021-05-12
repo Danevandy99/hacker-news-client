@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HackerNewsApiService } from '../shared/service/hacker-news-api.service';
+import { HackerNewsApiService } from '../../shared/service/hacker-news-api.service';
 
 @Component({
   selector: 'app-ask-stories',
@@ -12,10 +12,20 @@ import { HackerNewsApiService } from '../shared/service/hacker-news-api.service'
 export class AskStoriesComponent implements OnInit {
 
   storyIds$ = this.hackerNewsAPI.getAskStoriesIds();
+  detached = false;
 
   constructor(
     private hackerNewsAPI: HackerNewsApiService
   ) {
+
+  }
+
+  onAttach() {
+    this.detached = false;
+  }
+
+  onDetach() {
+    this.detached = true;
   }
 
   ngOnInit(): void {
