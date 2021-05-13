@@ -1,4 +1,3 @@
-import { AppRouterOutletDirective } from './app-router-outlet.directive';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -39,7 +38,6 @@ import { NgCacheRouteReuseModule } from 'ng-cache-route-reuse';
     StoryListComponent,
     DiscussionComponent,
     CommentComponent,
-    AppRouterOutletDirective,
     StoriesComponent,
   ],
   imports: [
