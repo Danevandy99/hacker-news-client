@@ -1,3 +1,4 @@
+import { NgCacheRouteReuseModule, NgCacheRouteReuseService } from 'ng-cache-route-reuse';
 import { HackerNewsApiService } from './../../shared/service/hacker-news-api.service';
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 
@@ -12,30 +13,34 @@ import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 export class StoriesComponent implements OnInit {
 
   storyIds: number[];
-  detached: boolean = false;
+  detached = false;
   sliceSize = 10;
 
   constructor(
-    private hnAPI: HackerNewsApiService
-  ) {
-    this.hnAPI.getTopStoriesIds().subscribe(ids => this.storyIds = ids);
-  }
+    private hnAPI: HackerNewsApiService,
+    private cacheRouteReuseService: NgCacheRouteReuseService
+  ) { }
 
   ngOnInit(): void {
+    this.hnAPI.getTopStoriesIds().subscribe(ids => this.storyIds = ids);
+
+    this.cacheRouteReuseService
+      .onAttach(StoriesComponent)
+      .subscribe((component) => {
+        this.detached = false;
+      });
+
+    this.cacheRouteReuseService
+      .onDetach(StoriesComponent)
+      .subscribe((component) => {
+        this.detached = true;
+      });
   }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.storyIds) {
       this.sliceSize = 10;
     }
-  }
-
-  onAttach() {
-    this.detached = false;
-  }
-
-  onDetach() {
-    this.detached = true;
   }
 
   onScroll() {

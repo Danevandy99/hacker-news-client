@@ -4,6 +4,7 @@ import { ApplicationRef, ChangeDetectionStrategy, ChangeDetectorRef, Component, 
 import { ActivatedRoute, Event, Router, RoutesRecognized, NavigationEnd } from '@angular/router';
 import { filter, first, map, pairwise, take, tap } from 'rxjs/operators';
 import { Story } from '../../shared/models/story';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-discussion',
@@ -21,7 +22,8 @@ export class DiscussionComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private routeHistory: RoutingHistoryService
+    private routeHistory: RoutingHistoryService,
+    public location: Location
   ) {
   }
 

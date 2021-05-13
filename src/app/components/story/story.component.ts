@@ -35,7 +35,7 @@ export class StoryComponent implements OnInit {
               ...metadata,
               hostname: new URL(this.story.url).hostname
             };
-          } else {
+          } else if (this.story) {
             this.story.image = "https://jayclouse.com/wp-content/uploads/2019/06/hacker_news-1000x525-1.jpg";
           }
         });

@@ -18,10 +18,10 @@ import { ShowStoriesComponent } from './pages/show-stories/show-stories.componen
 import { JobStoriesComponent } from './pages/job-stories/job-stories.component';
 import { StoryListComponent } from './components/story-list/story-list.component';
 import { DiscussionComponent } from './pages/discussion/discussion.component';
-import { RouteReuseStrategy } from '@angular/router';
-import { CustomReuseStrategy } from './reuse-strategy';
 import { CommentComponent } from './components/comment/comment.component';
 import { StoriesComponent } from './pages/stories/stories.component';
+import { NgCacheRouteReuseModule } from 'ng-cache-route-reuse';
+
 
 
 @NgModule({
@@ -47,13 +47,14 @@ import { StoriesComponent } from './pages/stories/stories.component';
     AppRoutingModule,
     HttpClientModule,
     TimeagoModule.forRoot(),
-    InfiniteScrollModule
+    InfiniteScrollModule,
+    NgCacheRouteReuseModule
   ],
   providers: [
-    {
-      provide: RouteReuseStrategy,
-      useClass: CustomReuseStrategy
-    }
+    // {
+    //   provide: RouteReuseStrategy,
+    //   useClass: CustomReuseStrategy
+    // }
   ],
   bootstrap: [AppComponent]
 })

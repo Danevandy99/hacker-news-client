@@ -10,21 +10,22 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/top-stories', pathMatch: 'full' },
+  { path: '', redirectTo: '/stories/top', pathMatch: 'full' },
   { path: 'top-stories', component: TopStoriesComponent },
   { path: 'new-stories', component: NewStoriesComponent },
   { path: 'best-stories', component: BestStoriesComponent },
   { path: 'ask-stories', component: AskStoriesComponent },
   { path: 'show-stories', component: ShowStoriesComponent },
   { path: 'job-stories', component: JobStoriesComponent },
-  { path: 'discussion/:id', component: DiscussionComponent },
-  { path: 'stories/:category', component: StoriesComponent }
+  { path: 'discussion/:id', component: DiscussionComponent, data: { reuse: true } },
+  { path: 'stories/:category', component: StoriesComponent, data: { reuse: true } }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, {
-    relativeLinkResolution: 'legacy',
-    scrollPositionRestoration: 'top'
+    enableTracing: false,
+    onSameUrlNavigation: 'reload',
+    scrollPositionRestoration: 'enabled'
   })],
   exports: [RouterModule]
 })

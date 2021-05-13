@@ -13,8 +13,8 @@ export class RoutingHistoryService {
     ) {
     this.router.events
       .pipe(filter(event => event instanceof NavigationEnd))
-      .subscribe(({urlAfterRedirects}: NavigationEnd) => {
-        this.history = [...this.history, urlAfterRedirects];
+      .subscribe((event: NavigationEnd) => {
+        this.history = [...this.history, event.urlAfterRedirects];
       });
   }
 
@@ -25,6 +25,7 @@ export class RoutingHistoryService {
 
   public getPreviousUrl(): string
   {
+    console.log(this.history[this.history.length - 2] || '/');
     return this.history[this.history.length - 2] || '/';
   }
 }
