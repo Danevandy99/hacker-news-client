@@ -13,6 +13,7 @@ export class CommentComponent implements OnInit {
   @Input() comment: Comment;
   @Input() level: number;
   showReplies = false;
+  minimized = false;
 
   constructor(
     private hnAPI: HackerNewsApiService,

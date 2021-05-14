@@ -1,15 +1,33 @@
 <div
+  (click)="minimized = !minimized"
   [ngClass]="(level % 2 === 0) ? 'bg-gray-100 dark:bg-gray-800' : 'bg-gray-200 dark:bg-gray-700'"
-  class="w-full bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden px-4 py-3 my-2">
-  <p
+  class="w-full cursor-pointer bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden px-4 py-3 my-2">
+  <div class="flex flex-row">
+    <p
     [ngClass]="{ 'shimmer': (!darkMode.darkMode && !comment), 'dark-shimmer': (darkMode.darkMode && !comment), 'w-64 rounded-full px-3 py-1': !comment }"
-    class="text-gray-500 text-sm flex items-center mr-2">{{ comment?.by }}&nbsp;<span *ngIf="comment?.time">- {{ (comment ?.time * 1000) | timeago }}</span></p>
+    class="flex-grow text-gray-500 text-sm flex items-center mr-2">{{ comment?.by }}&nbsp;<span *ngIf="comment?.time">- {{ (comment ?.time * 1000) | timeago }}</span></p>
+
+    <ng-container *ngIf="!minimized else minimizedArrow">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+      </svg>
+    </ng-container>
+    <ng-template #minimizedArrow>
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+      </svg>
+    </ng-template>
+
+
+  </div>
+
   <p
     [ngClass]="{ 'shimmer': (!darkMode.darkMode && !comment), 'dark-shimmer': (darkMode.darkMode && !comment), 'w-64 rounded-full px-3 py-1': !comment }"
     [innerHTML]="comment?.text"
+    *ngIf="!minimized"
     class="comment-text dark:text-white text-sm flex flex-col mt-1 ml-1 mr-2">
   </p>
-  <div *ngIf="comment?.kids && showReplies">
+  <div *ngIf="comment?.kids && showReplies && !minimized">
     <app-comment [commentId]="commentId" [level]="level + 1" *ngFor="let commentId of comment?.kids"></app-comment>
   </div>
 </div>

@@ -2,7 +2,9 @@ import { ActivatedRoute } from '@angular/router';
 import { NgCacheRouteReuseModule, NgCacheRouteReuseService } from 'ng-cache-route-reuse';
 import { HackerNewsApiService } from './../../shared/service/hacker-news-api.service';
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
-import { mergeMap } from 'rxjs/operators';
+import { mergeMap, map } from 'rxjs/operators';
+import { Meta, Title } from '@angular/platform-browser';
+
 
 @Component({
   selector: 'app-stories',
@@ -21,7 +23,9 @@ export class StoriesComponent implements OnInit {
   constructor(
     private hnAPI: HackerNewsApiService,
     private route: ActivatedRoute,
-    private cacheRouteReuseService: NgCacheRouteReuseService
+    private cacheRouteReuseService: NgCacheRouteReuseService,
+    private titleService: Title,
+    private metaTagService: Meta
   ) { }
 
   ngOnInit(): void {
@@ -30,17 +34,23 @@ export class StoriesComponent implements OnInit {
         mergeMap((params: { category: string }) => {
           switch (params.category) {
             case "new":
+              this.titleService.setTitle("Hacker News - New Stories");
               return this.hnAPI.getNewStoriesIds();
             case "best":
+              this.titleService.setTitle("Hacker News - Best Stories");
               return this.hnAPI.getBestStoriesIds();
             case "ask":
+              this.titleService.setTitle("Hacker News - Ask Stories");
               return this.hnAPI.getAskStoriesIds();
             case "show":
+              this.titleService.setTitle("Hacker News - Show Stories");
               return this.hnAPI.getShowStoriesIds();
             case "job":
+              this.titleService.setTitle("Hacker News - Job Stories");
               return this.hnAPI.getJobStoriesIds();
             case "top":
             default:
+              this.titleService.setTitle("Hacker News - Top Stories");
               return this.hnAPI.getTopStoriesIds();
           }
         })

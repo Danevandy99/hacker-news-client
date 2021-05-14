@@ -29,6 +29,7 @@ export class DiscussionComponent implements OnInit {
       .subscribe((params: { id: number }) => {
         this.discussionId = +params.id;
       });
+
     this.route.queryParams
       .subscribe((params: { story: string }) => {
         this.story = JSON.parse(params.story) as Story;
