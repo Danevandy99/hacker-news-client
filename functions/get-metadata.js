@@ -13,7 +13,7 @@ const metascraper = require('metascraper')([
 const got = require('got');
 
 /* My express App */
-export default function expressApp(functionName) {
+function expressApp(functionName) {
   const app = express()
   const router = express.Router()
   var cache = (duration) => {
