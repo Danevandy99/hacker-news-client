@@ -1,11 +1,8 @@
-import serverless from 'serverless-http';
+const serverless = require('serverless-http');
 /* Express App */
-import express from 'express'
-import cors from 'cors'
-import morgan from 'morgan'
-import bodyParser from 'body-parser'
-import compression from 'compression'
-import customLogger from '../utils/logger'
+const express = require('express');
+const cors = require('cors');
+const compression = require('compression');
 var mcache = require('memory-cache');
 const metascraper = require('metascraper')([
   require('metascraper-logo-favicon')(),
@@ -102,18 +99,12 @@ export default function expressApp(functionName) {
     }
   })
 
-  // Attach logger
-  app.use(morgan(customLogger))
 
   // Setup routes
   app.use(routerBasePath, router)
 
   // Apply express middlewares
   router.use(cors())
-  router.use(bodyParser.json())
-  router.use(bodyParser.urlencoded({
-    extended: true
-  }))
 
   return app
 }
