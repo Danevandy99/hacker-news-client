@@ -15,7 +15,7 @@ const got = require('got');
 // Export lambda handler
 exports.handler = async (event, context) => {
   try {
-    let url = event.queryStringParametersurl;
+    let url = event.queryStringParameters.url;
     let title = event.queryStringParameters.title || 'tech';
 
     if (!url) {
