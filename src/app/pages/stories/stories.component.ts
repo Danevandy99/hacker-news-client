@@ -61,14 +61,12 @@ export class StoriesComponent implements OnInit {
       .onAttach(StoriesComponent)
       .subscribe((component) => {
         this.detached = false;
-        console.log("attaching")
       });
 
     this.cacheRouteReuseService
       .onDetach(StoriesComponent)
       .subscribe((component) => {
         this.detached = true;
-        console.log("detaching")
       });
   }
 

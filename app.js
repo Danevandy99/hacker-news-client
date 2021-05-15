@@ -69,12 +69,12 @@ app.get("/get-metadata", cache(60 * 5), async (req, res) => {
 
     res.json({
       ...metadata,
-      image: "https://jayclouse.com/wp-content/uploads/2019/06/hacker_news-1000x525-1.jpg"
+      image: "./favicon.ico"
     });
   } catch (error) {
     console.log(error);
     res.json({
-      image: "https://jayclouse.com/wp-content/uploads/2019/06/hacker_news-1000x525-1.jpg",
+      image: "./favicon.ico",
       publisher: "",
       icon: ""
     });

@@ -8,8 +8,10 @@ export interface Story {
   title: string,
   type: string,
   url: string,
-  image?: string,
-  logo?: string,
-  publisher?: string,
+  metadata?: {
+    image?: string,
+    logo?: string,
+    publisher?: string
+  }
   hostname?: string,
 }

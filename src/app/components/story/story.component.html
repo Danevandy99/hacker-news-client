@@ -4,11 +4,11 @@
       <img
           class="object-contain w-8 h-8 rounded-md mr-3"
           [ngClass]="{
-            'shimmer': !story?.logo && !darkMode.darkMode,
-            'dark-shimmer': !story?.logo && darkMode.darkMode
+            'shimmer': !story?.metadata?.logo && !darkMode.darkMode,
+            'dark-shimmer': !story?.metadata?.logo && darkMode.darkMode
           }"
-          onerror="this.onerror=null;this.src='https://jayclouse.com/wp-content/uploads/2019/06/hacker_news-1000x525-1.jpg';"
-          [src]="story?.logo || blankImage"/>
+          onerror="this.onerror=null;this.src='./favicon.ico';"
+          [src]="story?.metadata ? (story?.metadata?.logo || './favicon.ico') : blankImage"/>
       <p class="dark:text-white font-bold flex-grow mr-2 whitespace-nowrap min-w-0 overflow-hidden overflow-ellipsis">{{ story?.hostname }}</p>
       <p *ngIf="story?.score" class="flex-none px-3 py-1 rounded-full bg-hnorange font-bold dark:text-opacity-75 dark:text-gray-800 text-gray-100 text-sm flex items-center">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -17,19 +17,20 @@
         {{ story?.score }}
       </p>
     </div>
-    <a [href]="story?.url" target="_blank" class="aspect-w-16 aspect-h-9 rounded-md overflow-hidden w-full block">
+    <a
+      (click)="goToURL(story)"
+      class="aspect-w-16 aspect-h-9 rounded-md overflow-hidden w-full block cursor-pointer">
       <img
         class="w-full h-full object-cover"
-        onerror="this.onerror=null;this.src='https://jayclouse.com/wp-content/uploads/2019/06/hacker_news-1000x525-1.jpg';"
+        onerror="this.onerror=null;this.src='./favicon.ico';"
         loading="lazy"
-        [ngClass]="{ 'shimmer': !story?.image && !darkMode.darkMode, 'dark-shimmer': !story?.image && darkMode.darkMode }"
-        [src]="story?.image || blankImage"/>
+        [ngClass]="{ 'shimmer': !story?.metadata?.image && !darkMode.darkMode, 'dark-shimmer': !story?.metadata?.image && darkMode.darkMode }"
+        [src]="story?.metadata ? (story?.metadata?.image || './favicon.ico') : blankImage"/>
     </a>
     <a
-      [href]="story?.url"
-      target="_blank"
+      (click)="goToURL(story)"
       [ngClass]="{ 'px-0': !story }"
-      class="p-2 w-full block">
+      class="p-2 w-full block cursor-pointer">
       <p
       [ngClass]="{ 'shimmer': (!darkMode.darkMode && !story), 'dark-shimmer': (darkMode.darkMode && !story), 'w-full rounded-full my-1': !story }"
         class="m-0 font-bold text-xl dark:text-white">{{ story?.title }}&nbsp;</p>

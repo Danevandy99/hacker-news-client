@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { environment } from './../../../environments/environment';
 import { DarkModeService } from './../../shared/service/dark-mode.service';
 import { HttpClient } from '@angular/common/http';
@@ -20,7 +21,8 @@ export class StoryComponent implements OnInit {
   constructor(
     private hackerNewsAPI: HackerNewsApiService,
     private http: HttpClient,
-    public darkMode: DarkModeService
+    public darkMode: DarkModeService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -32,13 +34,21 @@ export class StoryComponent implements OnInit {
             const metadata = await this.getURLMetadata(this.story.url, this.story.title);
             this.story = {
               ...this.story,
-              ...metadata,
+              metadata,
               hostname: new URL(this.story.url).hostname
             };
           } else if (this.story) {
-            this.story.image = "https://jayclouse.com/wp-content/uploads/2019/06/hacker_news-1000x525-1.jpg";
+            this.story.metadata = { image: "./favicon.ico" };
           }
         });
+    }
+  }
+
+  goToURL(story: Story) {
+    if (story.url) {
+      window.open(story.url);
+    } else {
+      this.router.navigate(['/discussion', story.id], { queryParams: { story: JSON.stringify(story) }});
     }
   }
 
