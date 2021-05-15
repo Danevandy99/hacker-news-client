@@ -81,11 +81,11 @@ app.get("/get-metadata", cache(60 * 5), async (req, res) => {
   }
 })
 
-app.use('/', express.static(__dirname + '/dist/hacker-news-client'));
+// app.use('/', express.static(__dirname + '/dist/hacker-news-client'));
 
-app.get('/*', (req, res) => {
-  res.sendFile(__dirname + '/dist/hacker-news-client/index.html');
-});
+// app.get('/*', (req, res) => {
+//   res.sendFile(__dirname + '/dist/hacker-news-client/index.html');
+// });
 
 // start the server listening for requests
 app.listen(process.env.PORT || 3000, () => {
