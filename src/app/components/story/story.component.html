@@ -32,8 +32,13 @@
       [ngClass]="{ 'px-0': !story }"
       class="p-2 w-full block cursor-pointer">
       <p
-      [ngClass]="{ 'shimmer': (!darkMode.darkMode && !story), 'dark-shimmer': (darkMode.darkMode && !story), 'w-full rounded-full my-1': !story }"
+        [ngClass]="{ 'shimmer': (!darkMode.darkMode && !story), 'dark-shimmer': (darkMode.darkMode && !story), 'w-full rounded-full my-1': !story }"
         class="m-0 font-bold text-xl dark:text-white">{{ story?.title }}&nbsp;</p>
+      <p
+        *ngIf="showText"
+        [ngClass]="{ 'shimmer': (!darkMode.darkMode && !story), 'dark-shimmer': (darkMode.darkMode && !story), 'w-full rounded-full my-1': !story }"
+        [innerHTML]="story?.text"
+        class="m-0 my-2 text-sm dark:text-white">&nbsp;</p>
     </a>
     <div
       [ngClass]="!story ? 'pl-0' : 'pl-2'"

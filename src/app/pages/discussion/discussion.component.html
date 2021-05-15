@@ -10,7 +10,7 @@
     </button>
     <h1 class="font-bold text-xl dark:text-white">Discussion</h1>
   </div>
-  <app-story [story]="story"></app-story>
+  <app-story [showText]="true" [story]="story"></app-story>
   <div class="p-2">
     <app-comment [level]="0" [commentId]="commentId" *ngFor="let commentId of story.kids"></app-comment>
   </div>

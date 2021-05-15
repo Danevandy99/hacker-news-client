@@ -16,6 +16,7 @@ import { map, publishReplay, refCount, share, shareReplay, tap } from 'rxjs/oper
 export class StoryComponent implements OnInit {
   @Input() storyId: number;
   @Input() story: Story;
+  @Input() showText: boolean = false;
   blankImage = "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==";
 
   constructor(
