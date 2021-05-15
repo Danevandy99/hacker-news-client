@@ -43,7 +43,7 @@ export class StoryComponent implements OnInit {
   }
 
   async getURLMetadata(url: string, title: string): Promise<{ image: string, publisher: string, logo: string }> {
-    const baseUrl = environment.production ? "/.netlify/functions/" : "http://localhost/";
+    const baseUrl = environment.production ? "http://arcane-forest-01377.herokuapp.com/" : "http://localhost/";
     return await this.http.get<{ image: string, publisher: string, logo: string }>(baseUrl + "get-metadata?url=" + url + "&title=" + title).toPromise();
   }
 }
