@@ -14,6 +14,7 @@ import { DiscussionComponent } from './pages/discussion/discussion.component';
 import { CommentComponent } from './components/comment/comment.component';
 import { StoriesComponent } from './pages/stories/stories.component';
 import { NgCacheRouteReuseModule } from 'ng-cache-route-reuse';
+import { MobileHeaderComponent } from './components/mobile-header/mobile-header.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { NgCacheRouteReuseModule } from 'ng-cache-route-reuse';
     DiscussionComponent,
     CommentComponent,
     StoriesComponent,
+    MobileHeaderComponent,
   ],
   imports: [
     BrowserModule,
