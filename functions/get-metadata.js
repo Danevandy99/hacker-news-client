@@ -1,16 +1,15 @@
-const serverless = require('serverless-http');
-/* Express App */
-const express = require('express');
-const cors = require('cors');
-const compression = require('compression');
-var mcache = require('memory-cache');
-const metascraper = require('metascraper')([
-  require('metascraper-logo-favicon')(),
-  require('metascraper-image')(),
-  require('metascraper-publisher')(),
-  //require('metascraper-logo')(),
-]);
-const got = require('got');
+
+// const metascraper = require('metascraper')([
+//   require('metascraper-logo-favicon')(),
+//   require('metascraper-image')(),
+//   require('metascraper-publisher')(),
+//   //require('metascraper-logo')(),
+// ]);
+// const got = require('got');
+
+import got from 'got';
+import metascraper from 'metascraper';
+
 
 // Export lambda handler
 exports.handler = async (event, context) => {
