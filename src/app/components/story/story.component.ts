@@ -3,10 +3,8 @@ import { environment } from './../../../environments/environment';
 import { DarkModeService } from './../../shared/service/dark-mode.service';
 import { HttpClient } from '@angular/common/http';
 import { HackerNewsApiService } from './../../shared/service/hacker-news-api.service';
-import { Observable } from 'rxjs';
 import { Component, Input, OnInit } from '@angular/core';
 import { Story } from 'src/app/shared/models/story';
-import { map, publishReplay, refCount, share, shareReplay, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-story',
@@ -32,10 +30,13 @@ export class StoryComponent implements OnInit {
         .subscribe(async story => {
           this.story = story;
           if (this.story && this.story.url && this.story.title) {
-            const metadata = await this.getURLMetadata(this.story.url, this.story.title);
+            const image = await this.getURLMetadata(this.story.url, this.story.title);
             this.story = {
               ...this.story,
-              metadata,
+              metadata: {
+                image,
+                logo: `https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=${this.story.url}&size=64`,
+              },
               hostname: new URL(this.story.url).hostname
             };
           } else if (this.story) {
@@ -53,8 +54,8 @@ export class StoryComponent implements OnInit {
     }
   }
 
-  async getURLMetadata(url: string, title: string): Promise<{ image: string, publisher: string, logo: string }> {
-    const baseUrl = environment.production ? "https://arcane-forest-01377.herokuapp.com/" : "http://localhost/";
-    return await this.http.get<{ image: string, publisher: string, logo: string }>(baseUrl + "get-metadata?url=" + url + "&title=" + title).toPromise();
+  async getURLMetadata(url: string, title: string): Promise<string> {
+    const baseUrl = environment.production ? "https://hacker-news-og-scraper.azurewebsites.net/api/og_scraper/" : "http://localhost:7071/api/og_scraper/";
+    return (await this.http.get<{ image: string }>(baseUrl + "?url=" + url + "&title=" + title).toPromise()).image;
   }
 }
